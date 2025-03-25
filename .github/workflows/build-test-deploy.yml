@@ -30,7 +30,6 @@ jobs:
 
   deploy:
     needs: test
-
     permissions:
       contents: write
       id-token: write
@@ -38,8 +37,7 @@ jobs:
 
     environment:
       name: production
-      url: ${{ steps.deployment.outputs.page_url}}
-
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -57,7 +55,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: upload artifacts
-        uses: actions/upload-pages-artifacts@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "./out"
       - name: deploy
